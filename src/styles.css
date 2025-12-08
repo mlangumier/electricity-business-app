@@ -4,11 +4,45 @@
   themes: light --default, dark --prefersdark;
 }
 
-/*@plugin "daisyui/theme" {*/
-/*  name: "custom-theme";*/
-/*  default: true;*/
-/*  prefersdark: false;*/
-/*  color-scheme: light;*/
+@plugin "daisyui/theme" {
+  name: "custom";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
 
-/*  --color-base-100: oklch(98% 0.02 180);*/
-/*}*/
+  --color-base-100: oklch(100% 0 0);                    /* white */
+  --color-base-200: oklch(98% 0.003 247.858);           /* slate-50 */
+  --color-base-300: oklch(97% 0.013 236.62);            /* sky-50 */
+  --color-base-content: oklch(27% 0.041 260.031);       /* slate-800 */
+  --color-primary: oklch(44% 0.11 240.79);              /* sky-800 */
+  --color-primary-content: oklch(96% 0.007 247.896);
+  --color-secondary: oklch(90% 0.058 230.902);          /* sky-200 */
+  --color-secondary-content: oklch(27% 0.041 260.031);
+  --color-accent: oklch(76% 0.233 130.85);             /* lime-400 */
+  --color-accent-content: oklch(27% 0.041 260.031);
+  --color-neutral: oklch(44% 0.11 240.79);              /* sky-800 */
+  --color-neutral-content: oklch(96% 0.007 247.896);
+
+  --color-info: oklch(70% 0.165 254.624);               /* blue-400 */
+  --color-info-content: oklch(27% 0.041 260.031);
+  --color-success: oklch(79% 0.209 151.711);            /* green-400 */
+  --color-success-content: oklch(27% 0.041 260.031);
+  --color-warning: oklch(85% 0.199 91.936);             /* yellow-400 */
+  --color-warning-content: oklch(27% 0.041 260.031);
+  --color-error: oklch(70% 0.191 22.216);               /* red-400 */
+  --color-error-content: oklch(27% 0.041 260.031);
+
+  --radius-selector: 0.25rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 1;
+}
+
+@layer components {
+  /* Typography */
+  /*  Reusable components */
+}
