@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
-import { Login } from "./core/auth/pages/login/login";
-import { Register } from "./core/auth/pages/register/register";
-import { Home } from "./features/home/home";
-import { Dashboard } from "./features/user/pages/dashboard/dashboard";
+import { Login } from "./features/auth/login/login";
+import { Register } from "./features/auth/register/register";
+import { Home } from "./features/public/home/home";
+import { Dashboard } from "./features/user/dashboard/dashboard";
+
+//TODO: transform routes to lazy-loaded routes with "loadComponent"
 
 export const routes: Routes = [
   { path: '', component: Home, title: "Accueil | Electricity Business" },
@@ -10,6 +12,9 @@ export const routes: Routes = [
   { path: 'login', component: Login, title: "Connexion" },
   { path: 'register', component: Register, title: "Inscription" },
 
-  { path: 'dashboard', component: Dashboard, title: "Dashboard" }, // Add guard
+  // { path: 'app', component: Dashboard, title: "Dashboard" }, // Add guard
+  { path: 'app', component: Dashboard, title: "Dashboard", children: [
+      // { path: 'profile', component: UserProfile, title: "Profil" }
+    ] }, // Add guard
   { path: "**", redirectTo: "", pathMatch: "full" }
 ];
