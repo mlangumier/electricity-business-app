@@ -1,1 +1,27 @@
-<div>HEADER</div>
+<header class="navbar bg-base-100 shadow-sm">
+  <div class="navbar-start">
+    <a class="btn btn-ghost px-0" routerLink="/">
+      <div class="img-block">
+        <img ngSrc="/assets/icons/logo.svg"
+            alt="Logo Electricity Business"
+            height="28"
+            width="28"
+        />
+      </div>
+      <div class="flex flex-col items-start">
+        <span>Electricity Business</span>
+        <span>Plus loin, ensemble</span>
+      </div>
+    </a>
+  </div>
+  <nav class="navbar-center hidden lg:flex" aria-label="Vers les pages principales">
+    <ul class="menu menu-horizontal px-1">
+      <li><a routerLink="/" class="btn btn-ghost">Trouver une borne</a></li>
+      <li><a routerLink="/" class="btn btn-ghost">Autre page</a></li>
+      <li><a routerLink="/register" class="btn btn-ghost">M'inscrire</a></li>
+    </ul>
+  </nav>
+  <div class="navbar-end">
+    <a class="btn btn-primary" routerLink="/login">Se connecter</a>
+  </div>
+</header>
