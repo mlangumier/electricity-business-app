@@ -2,26 +2,27 @@ import { Routes } from '@angular/router';
 import { Login } from "./features/auth/login/login";
 import { Register } from "./features/auth/register/register";
 import { Home } from "./features/public/home/home";
-import { Dashboard } from "./features/user/dashboard/dashboard";
 
-//TODO: transform routes to lazy-loaded routes with "loadComponent"
+const appTitle: string = "Electricity Business";
 
 export const routes: Routes = [
-  {
-    path: '',
-    loadComponent: () => import("./features/public/home/home").then(m => m.Home),
-    title: "Electricity Business"
-  },
+  { path: '', component: Home, title: appTitle },
   // { path: '', component: Home, title: "Electricity Business" },
 
-  { path: 'login', component: Login, title: "Connexion" },
-  { path: 'register', component: Register, title: "Inscription" },
+  //---   Authentication
+  { path: 'login', component: Login, title: `Connexion | ${appTitle}` },
+  { path: 'register', component: Register, title: `Inscription | ${appTitle}` },
 
-  // { path: 'app', component: Dashboard, title: "Dashboard" }, // Add guard
+  //---   User routes
   {
-    path: 'app', component: Dashboard, title: "Mon Espace | Electricity Business", children: [
+    path: 'app',
+    loadComponent: () => import("./features/user/dashboard/dashboard").then(m => m.Dashboard),
+    title: `Mon Espace | ${appTitle}`,
+    // Add guard
+    children: [
       // { path: 'profile', component: UserProfile, title: "Profil" }
     ]
   }, // Add guard
+
   { path: "**", redirectTo: "", pathMatch: "full" }
 ];

@@ -42,6 +42,17 @@
   --noise: 1;
 }
 
+/* Override defaults */
+body, html {
+  height: 100%;
+}
+
+app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 @layer components {
   /* Typography */
   /*  Reusable components */
