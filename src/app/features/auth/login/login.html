@@ -1,1 +1,21 @@
-<h1>LOGIN</h1>
+<section class="title">
+  <h1>Connexion</h1>
+</section>
+
+<section>
+  <form class="fieldset bg-base-200 border-base-300 rounded-box w-xs mx-auto border p-4">
+    <fieldset class="fieldset">
+      <label for="email" class="label">Email</label>
+      <input id="email" type="email" class="input validator" required />
+      <p class="validator-hint hidden">Valid email required</p>
+    </fieldset>
+
+    <label class="fieldset">
+      <label for="password" class="label">Mot de passe</label>
+      <input id="password" type="password" class="input validator" required />
+      <span class="validator-hint hidden">Required</span>
+    </label>
+
+    <button class="btn btn-primary mt-4" type="submit">Login</button>
+  </form>
+</section>

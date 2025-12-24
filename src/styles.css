@@ -42,18 +42,32 @@
   --noise: 1;
 }
 
-/* Override defaults */
-body, html {
-  height: 100%;
-}
+@layer base {
+  html, body {
+    @apply h-full;
+  }
 
-app-root {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  app-root {
+    @apply h-full flex flex-col;
+  }
+
+  main {
+    @apply grow p-4 lg:px-20 lg:py-10;
+  }
+
+  .container {
+    @apply w-full;
+  }
 }
 
 @layer components {
+  .container {
+    @apply w-full
+  }
+
+  .form-actions {
+    @apply mt-4 flex flex-row justify-end;
+  }
   /* Typography */
   /*  Reusable components */
 }
