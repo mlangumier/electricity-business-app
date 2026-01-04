@@ -2,6 +2,13 @@
   <h1>Inscription</h1>
 </section>
 
+<section id="test-requests" class="flex flex-row justify-center gap-4">
+  <button class="btn btn-primary" (click)="submitForm()">Email</button>
+  <button class="btn btn-primary" (click)="testRegister()">Register</button>
+  <button class="btn btn-primary" (click)="testLogin()">Login</button>
+  <button class="btn btn-primary" (click)="testLogout()">Logout</button>
+</section>
+
 <section>
   <form class="fieldset bg-base-200 border-base-300 rounded-box w-full max-w-lg mx-auto border p-4">
     <fieldset class="fieldset">
@@ -54,7 +61,7 @@
     </div>
 
     <div class="form-actions">
-      <button class="btn btn-primary" type="submit">Register</button>
+      <button class="btn btn-primary" type="submit" (click)="submitForm()">Register</button>
     </div>
   </form>
 </section>
