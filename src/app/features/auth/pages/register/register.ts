@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, inject } from '@angular/core';
+import { IUserAuth } from "../../auth.models";
 import { AuthService } from "../../services/auth-service";
 
 @Component({
@@ -11,37 +13,56 @@ export class Register {
   private readonly authService = inject(AuthService);
 
   submitForm() {
-    this.authService.checkIsEmailAvailable("matt@test.com").subscribe(res => console.log(`Email available: ${ res }`))
+    this.authService.checkIsEmailAvailable("henry@test.com").subscribe({
+      next: () => {
+        // Remove input & form errors if present
+        console.log("Email available");
+      },
+      error: (err: HttpErrorResponse) => {
+        // Add error to input & form validation
+        console.log(err);
+      }
+    })
   }
 
   testRegister() {
     this.authService.register({
-      email: "matt@test.com",
-      firstName: "Matt",
-      lastName: "Lang",
-      //ERROR: have the backend return an error for 'dateOfBirth' field validations
+      email: "henry@test.com",
+      firstName: "Henry",
+      lastName: "Kobyla",
+      //ERROR: have the backend return an error for 'dateOfBirth' field validations if -18yo
       dateOfBirth: new Date("1991-01-01"),
-      password: "password"
-    }).subscribe(res => {
-      console.log("--- Test Register:");
-      console.log(res);
+      password: "henry@password"
+    }).subscribe({
+      next: () => console.log("Registered!"),
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      }
     });
   }
 
   testLogin() {
     this.authService.login({
-      email: "matt@test.com",
-      password: "password"
-    }).subscribe(res => {
-      console.log("--- Test Login:");
-      console.log(res);
+      email: "henry@test.com",
+      password: "henry@password"
+    }).subscribe({
+      next: (res: IUserAuth) => {
+        console.log(res);
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      }
     });
   }
 
   testLogout() {
-    this.authService.logout().subscribe(res => {
-      console.log("--- Test Logout:");
-      console.log(res);
+    this.authService.logout().subscribe({
+      next: () => {
+        console.log("Logged out");
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      }
     });
   }
 }

@@ -2,18 +2,18 @@ import { HttpClient } from "@angular/common/http";
 import { afterNextRender, computed, inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from "rxjs";
 import { environment } from "../../../../environments/environment";
-import { ILoginCredentials, IRegisterData, IUser, IUserAuth } from "../auth.models";
+import { ILoginCredentials, IRegisterData, IUserAuth } from "../auth.models";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly http = inject(HttpClient);
-  private readonly _currentUser = signal<IUser | null>(null);
+  private readonly _currentUser = signal<IUserAuth | null>(null);
   currentUser = this._currentUser.asReadonly();
   isLoggedIn = computed(() => this.currentUser !== null);
 
-  // On page refresh, check local info without sending a request
+  // On page refresh, check local info without sending a request (not good, needs to be replaced)
   constructor() {
     afterNextRender({
       write: () => {
@@ -25,8 +25,8 @@ export class AuthService {
     })
   }
 
-  checkIsEmailAvailable(email: string): Observable<boolean> {
-    return this.http.post<boolean>(`${ environment.apiUrl }/email-available`, { email });
+  checkIsEmailAvailable(email: string): Observable<string> {
+    return this.http.post<string>(`${ environment.apiUrl }/email-available`, { email });
   }
 
   register(payload: IRegisterData): Observable<string> {
@@ -35,12 +35,11 @@ export class AuthService {
 
   //TODO: VerifyAccount
 
-  //ERROR: HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/yaml]
   login(payload: ILoginCredentials) {
     return this.http.post<IUserAuth>(`${ environment.apiUrl }/auth/login`, payload, { withCredentials: true }).pipe(tap(response => {
       localStorage.setItem("token", response.accessToken);
       localStorage.setItem("user", JSON.stringify(response.user));
-      this._currentUser.set(response.user);
+      this._currentUser.set(response);
     }))
   }
 
